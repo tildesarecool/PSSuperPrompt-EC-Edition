@@ -15,7 +15,8 @@ The formatting seems to be a little off versus the original but I haven't got ar
 ## Notes
 
 >- Yes, the code is a bit ugly; I've just tweaked with it here and there for a few years and this is what I've come up with, but I've never taken the time to really make it look "spiffy".
-- Better looking code than I would do for myself
+
+ Better looking code than I would do for myself
 
 >- No, it does not have any configurable options. Sorry. Up until literally the moment I'm writing
 this, it has always just run on my machines, so configurability for personal preference was
@@ -23,14 +24,15 @@ obviously not on my radar. I would love to add that, though, so if I get around 
 someone likes this starting point and wants to shoot me a pull request with extra bells and
 whistles, it may very well get those features in the future.
 
-- I thinking of planning on thinking of adding some customization options. With a...menu? Or a make the user edit a JSON. Maybe both. 
+ I thinking of planning on thinking of adding some customization options. With a...menu? Or a make the user edit a JSON. Maybe both. 
 
 >- The git functions require the module posh-git to be installed. It tests for this and will work
 perfectly fine without it, you just won't get any git details in git repositories. It does use
 a global to track that which I added because, at least on my machines, the module test was causing
 my prompt to take multiple seconds to draw after every command; this way just tests once so you're
 not getting the added delay every time.
-- This I wish I'd read again multiple times while I was editing. Would have saved some trouble. Actually explains a couple of things. Although I think I found a better way of testing for the posh-git module. The purpose of the test was different than I thought it was.
+
+ This I wish I'd read again multiple times while I was editing. Would have saved some trouble. Actually explains a couple of things. Although I think I found a better way of testing for the posh-git module. The purpose of the test was different than I thought it was.
 
 >- The Reset-Prompt function (and its alias 'rsp') is really just a way to make mucking with the
 prompt easier so I don't have to reload every time I try something, or if I set up another prompt

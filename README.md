@@ -10,6 +10,8 @@ I've already worked on it a little bit before the forking. Although re-reading t
 
 I'll go thorugh the notes here and make some *useful* comments of my own.
 
+The formatting seems to be a little off versus the original but I haven't got around to fixing it. I blame CR/LF.
+
 ## Notes
 
 >- Yes, the code is a bit ugly; I've just tweaked with it here and there for a few years and this is what I've come up with, but I've never taken the time to really make it look "spiffy".
@@ -43,17 +45,29 @@ I think I'll move this minor detail to the top of the description and provide mo
 
 >- If I wind up taking the time, at some point I plan to add a better description and do a lot of the
 cleanup and configurability stuff I mentioned above.
-    - That said, I know myself too well; please don't hold your breath, as it could happen any time
-    between now and the heat death of the universe, and probably closer to the latter than the
-    former ;)
 
+- That said, I know myself too well; please don't hold your breath, as it could happen any time between now and the heat death of the universe, and probably closer to the latter than the former ;)
 
+![](thanos-fine-i'll-do-it-myself-ascii-20percent-with-caption.jpg "This only took me a few minutes. Too long.")
+
+Not sure why I made that ascii. Seemed strangely fitting.
 
 > - The job control stuff I just added when I started this repo, and I haven't really used it much at all
 since then, so it may or may not be all that great and functional. I just realized that I should be
 making better use of jobs, and one of the problems with jobs is how invisible they are (you have to
 remember they're there, and they never let you know when they're done), so the jobs piece is meant to
 make them more visible.
-- Fun fact: the original inspiration for this prompt is the Gentoo default prompts (both for root
-and for regular users). It still somewhat resembles that prompt, though obviously heavily modified
-at this point
+
+I assume this has to do with running multiple multi-minute long tasks from powershell at the same time. I've never had a real need for such functionality (assuming I'm right about that). I'd sooner open a new tab in Windows Terminal. I don't do lots of compiling or anything either though. I'll leave it in.
+
+> - Fun fact: the original inspiration for this prompt is the Gentoo default prompts (both for root and for regular users). It still somewhat resembles that prompt, though obviously heavily modified at this point
+
+You call that fun?
+
+![](ectecctrain-ascii-25percent-with-caption.jpg "Well it was fun to make")
+
+Now *this* is fun...or weird. Definitely one of those two.
+
+Also, Gentoo? You just use that so you can take a break while you compile your kernel for the 5th time today, aren't yoU?
+
+I use Arch btw.

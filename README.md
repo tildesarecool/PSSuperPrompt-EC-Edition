@@ -46,7 +46,7 @@ I think I'll move this minor detail to the top of the description and provide mo
 >- If I wind up taking the time, at some point I plan to add a better description and do a lot of the
 cleanup and configurability stuff I mentioned above.
 
-- That said, I know myself too well; please don't hold your breath, as it could happen any time between now and the heat death of the universe, and probably closer to the latter than the former ;)
+> - That said, I know myself too well; please don't hold your breath, as it could happen any time between now and the heat death of the universe, and probably closer to the latter than the former ;)
 
 ![](thanos-fine-i'll-do-it-myself-ascii-20percent-with-caption.jpg "This only took me a few minutes. Too long.")
 

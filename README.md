@@ -7,7 +7,7 @@ Basic description
 
 Bearing in mind of course I don't actually know what the purpose of it is or if I'd find it useful. 
 
-Current status of PSSuperPrompt "EC Edition": **Broken**
+**Current Status: Broken**
 
 ### Requirements (Windows):
 

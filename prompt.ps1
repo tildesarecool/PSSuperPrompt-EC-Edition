@@ -22,6 +22,29 @@ function DetermineGitInstalled {
 }
 $Global:gitStatus = DetermineGitInstalled
 
+function DeterminPSVersion {
+    # this should make $ver a string that is the version PS installed
+    # something like "7.4.0"
+    $ver = [string]$PSVersionTable.PSVersion
+    #([string]$PSVersionTable.PSVersion).Split('.')[0..1] -join '.'
+    #    $jobs = Get-Job
+    return $ver
+
+}
+
+function ReturnLastTime {
+    $ver = [string](DeterminPSVersion)[0]    
+    if ($ver[0] -ge 7) {
+            # $ver[0] 
+            $lastTime = Get-LastHistoryDuration
+        } else {
+            Write-Host "Unclear if this will run on PS versions early than 7, but I'll continue anyway."
+            $lastTime = Get-LastHistoryDuration
+        }
+    return $lastTime
+    
+}
+
 
 function Get-LastHistoryDuration
 {
@@ -32,10 +55,10 @@ function Get-LastHistoryDuration
         $hours = ([decimal]$duration.TotalHours).ToString().Split('.')[0]
         $hours = $hours.PadLeft(2, '0')
         
-        $minutes = $duration.Minutes.ToString().PadLeft(2, '0')
-        $seconds = $duration.Seconds.ToString().PadLeft(2, '0')
-        $milliseconds = $duration.Milliseconds.ToString().PadLeft(3, '0')
-        $output = "$($seconds).$($milliseconds)"
+$minutes = $duration.Minutes.ToString().PadLeft(2, '0')
+$seconds = $duration.Seconds.ToString().PadLeft(2, '0')
+$milliseconds = $duration.Milliseconds.ToString().PadLeft(3, '0')
+$output = "$($seconds).$($milliseconds)"
         
         if ($minutes -ne '00') {
             $output = "$($minutes):$($output)"        
@@ -55,7 +78,7 @@ function Test-Administrator {
 #    {
 #        $admin = $true
 #    }
-$EUID = [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+    $EUID = [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value
 # I got this $EUID bit from chatGPT. And since she's almost never wrong so I'm just assuming it's a valid
 # way to determine the yes/no ....root-ness.... access level
      if ($IsLinux -and $user -eq 'root' -and $EUID -eq '0') {
@@ -117,16 +140,14 @@ function Global:prompt {
     #$user = (whoami).Split('\')[-1]
     $user = $env:USERNAME
     # $hostname = hostname # redundant variable of redundancy is redundant
-    $ver = ([string]$PSVersionTable.PSVersion).Split('.')[0..1] -join '.'
-#    $jobs = Get-Job
-    
-    if ($ver -ge 7) {
-        $lastTime = Get-LastHistoryDuration
-    }
+
     # Extra versiony goodness:
-    if ($null -ne $PSVersionTable.PSVersion.Patch) {
-        $ver += ".$($PSVersionTable.PSVersion.Patch)"
-    }
+    # forker speaking: I'm not sure what the purpose of this bit is. It appears to appened ".0" to the end of the $ver variable if the patch number is not $null
+    # Since I've implement my own version of this determining the PS version this does not seem necessary
+    # so i'm commenting it out and I"ll just have to see if anything breaks in my own fork version
+    #if ($null -ne $PSVersionTable.PSVersion.Patch) {
+    #    $ver += ".$($PSVersionTable.PSVersion.Patch)"
+    #}
     
 #    $admin = $false
 #    if ($IsLinux -and $user -eq 'root')
@@ -171,7 +192,8 @@ function Global:prompt {
     # Timestamp:
     Write-Host "[$(([string](Get-Date)).Split()[1])] " -ForegroundColor Yellow -NoNewline
     
-    # Last Execution Time:
+    # Last Execution Time: ReturnLastTime
+    $lastTime = ReturnLastTime
     if ($ver -ge 7 -and $lastTime) {
         Write-Host "<$($lastTime)> " -ForegroundColor Blue -NoNewline
     }

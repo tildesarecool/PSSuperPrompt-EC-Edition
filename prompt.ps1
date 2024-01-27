@@ -20,6 +20,8 @@ function DetermineGitInstalled {
     }
     return GitMissing
 }
+$Global:gitStatus = DetermineGitInstalled
+
 
 function Get-LastHistoryDuration
 {
@@ -54,6 +56,8 @@ function Test-Administrator {
 #        $admin = $true
 #    }
 $EUID = [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+# I got this $EUID bit from chatGPT. And since she's almost never wrong so I'm just assuming it's a valid
+# way to determine the yes/no ....root-ness.... access level
      if ($IsLinux -and $user -eq 'root' -and $EUID -eq '0') {
 
             $admin = $true
@@ -102,7 +106,8 @@ function setWorkDir {
     return $workdir
 }
 
-$Global:__poshGitInstalled = TestForPosh
+# rather than testing aginst running Get-GitStatus I just test against whether or not the git command runs or not
+$Global:__poshGitInstalled = TestForPosh -and $gitStatus
 $Global:jobs = Get-Job
 function Global:prompt {
 

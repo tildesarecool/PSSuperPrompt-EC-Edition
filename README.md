@@ -7,6 +7,8 @@ Basic description
 
 Bearing in mind of course I don't actually know what the purpose of it is or if I'd find it useful. 
 
+Current status of PSSuperPrompt "EC Edition": **Broken**
+
 ### Requirements (Windows):
 
 - **PS v7.x** for Windows 10/11
@@ -18,16 +20,18 @@ Bearing in mind of course I don't actually know what the purpose of it is or if 
   - choco command: 
   **choco install git**
 
+
 - **[PS module posh-git](https://dahlbyk.github.io/posh-git/)** (recommended by original author)
 
   - Upon searching I found poshgit listed as a package in the chocolatey repo, but I haven't tried it yet. The command as above would be
   **choco install poshgit**
+  - As it turns out there's several ways of installing posh-git that involves a few more steps depending on a number of variables. I'm linking to the instructions on the project's GitHub and leave it at that: 
+  https://github.com/dahlbyk/posh-git
 
 - **Chocolatey package manager** for windows: my own preference for Windows package managers (I imagine __win-get__ will server this purpose too)
   
   - Install instructions with a copy/paste installer script can be [found on the chocolatey install guide page](https://chocolatey.org/install).
-  - As it turns out there's several ways of installing posh-git that involves a few more steps depending on a number of variables. I'm linking to the instructions on the project's GitHub and leave it at that: 
-  https://github.com/dahlbyk/posh-git
+
 
 ### Installation
 
@@ -35,6 +39,21 @@ Scientists are still working on deciphering the meaning of this non-sensical tec
 
 > To install it, just paste the entire thing into your `$profile`, or dot source the .ps1 file from your `$profile`. Either will work.
 
+I figured out what this means: but don't install it this way. 
+
+Install steps:
+- clone repository
+- switch to repo folder and admin PS commandline
+- run prompt.ps1
+
+One of the ways I recommend this way way because the code that is supposed to revert back to the original prompt doesn't seem to work, at least no for me. And I think a way of resetting back to the default prompt is worthwhile in case it doesn't actually work for you.
+
+That code being this bit. If you know PS well enough this works for you or you already know how to fall back to default that install to `$profile` all you like.
+
+```PowerShell
+Invoke-Expression "function Reset-Prompt { . '$($MyInvocation.MyCommand.Path)' }"
+New-Alias -Name 'rsp' -Value 'Reset-Prompt' -Force
+```
 
 ## Latest Updates will be at the bottom
 

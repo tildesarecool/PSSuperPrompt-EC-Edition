@@ -7,12 +7,13 @@ Basic description
 
 Bearing in mind of course I don't actually know what the purpose of it is or if I'd find it useful. 
 
-###Requirements (Windows):
+### Requirements (Windows):
+
 - **PS v7.x** for Windows 10/11
 
 - *Local admin/root access to system* in order to fully customize prompt (and run programs with local admin)
 
-###Optional but good to have:
+### Optional but good to have:
 * **Git for Windows** (available via package manager like chocolatey or [the git website](https://gitforwindows.org/)
   - choco command: 
   **choco install git**

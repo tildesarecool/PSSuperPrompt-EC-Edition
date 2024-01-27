@@ -29,7 +29,7 @@ Bearing in mind of course I don't actually know what the purpose of it is or if 
   - As it turns out there's several ways of installing posh-git that involves a few more steps depending on a number of variables. I'm linking to the instructions on the project's GitHub and leave it at that: 
   https://github.com/dahlbyk/posh-git
 
-###Installation
+### Installation
 
 Scientists are still working on deciphering the meaning of this non-sensical technobabble. That's what I'm going with.
 
@@ -110,7 +110,7 @@ I use Arch btw.
 
 ---
 
-###Starting Work
+### Starting Work
 
 This scripts starts with some extended tests to see if the OS is windows or Linux for purpose of determining if it's being run under an Admin/root level shell. 
 

@@ -29,21 +29,23 @@ function DeterminPSVersion {
     $psver = [string]$PSVersionTable.PSVersion
     #([string]$PSVersionTable.PSVersion).Split('.')[0..1] -join '.'
     #    $jobs = Get-Job
-    Write-Host $psver
+ #   Write-Host $psver
     return $psver
 
 }
+#DeterminPSVersion
+
 
 function ReturnLastTime {
     $majorpsver = [string](DeterminPSVersion)[0]    
     if ($majorpsver[0] -ge 7) {
             # $ver[0] 
-            $lastTime = Get-LastHistoryDuration
+            $lastHistDur = Get-LastHistoryDuration
         } else {
             Write-Host "Unclear if this will run on PS versions early than 7, but I'll continue anyway."
-            $lastTime = Get-LastHistoryDuration
+            $lastHistDur = Get-LastHistoryDuration
         }
-    return $lastTime
+    return $lastHistDur
     
 }
 
@@ -136,14 +138,18 @@ function DeterHistCount {
 }
 
 function GetPSverPRLabel {
-    
-    if ($PSVersionTable.PSVersion.PreReleaseLabel) {
-        Write-Host "($($ver)-$($PSVersionTable.PSVersion.PreReleaseLabel)) " -ForegroundColor Red -NoNewline
+    # GetPSverPRLabel
+    $GetPSVerPreLabel = $PSVersionTable.PSVersion.PreReleaseLabel
+    if ($GetPSVerPreLabel) {
+        $result = "($($PSFullVer)-$($GetPSVerPreLabel))" #   -ForegroundColor Red -NoNewline"
     }
     else {
-        Write-Host "($ver) " -ForegroundColor Magenta -NoNewline
+        $result = "($PSFullVer)" #  -ForegroundColor Magenta -NoNewline"
     }
+    return $result
+
 }
+$Global:PSFullVer = DeterminPSVersion
 
 
 # rather than testing aginst running Get-GitStatus I just test against whether or not the git command runs or not
@@ -154,6 +160,10 @@ $Global:admin = Test-Administrator
 $Global:wd = setWorkDir
 $Global:user = $env:USERNAME
 $Global:gethistcount = DeterHistCount
+$Global:PSFullVer = DeterminPSVersion
+$Global:lastTime = ReturnLastTime
+$Global:GetTimeStamp = "[$(([string](Get-Date)).Split()[1])] "
+$Global:lastTime = ReturnLastTime
 
 
 function Global:prompt {
@@ -218,11 +228,14 @@ function Global:prompt {
 
 
     # Timestamp:
-    Write-Host "[$(([string](Get-Date)).Split()[1])] " -ForegroundColor Yellow -NoNewline
+    # [$(([string](Get-Date)).Split()[1])]
+    #$GetTimeStamp = (([string](Get-Date)).Split()[1])
+    #$GetTimeStamp = "[$(([string](Get-Date)).Split()[1])] "
+    Write-Host $GetTimeStamp -ForegroundColor Yellow -NoNewline
     
     # Last Execution Time: ReturnLastTime
-    $lastTime = ReturnLastTime
-    if ($ver -ge 7 -and $lastTime) {
+    # $lastTime defined global above
+    if ($PSFullVer -ge 7 -and $lastTime) {
         Write-Host "<$($lastTime)> " -ForegroundColor Blue -NoNewline
     }
     

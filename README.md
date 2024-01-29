@@ -7,7 +7,7 @@ Basic description
 
 Bearing in mind of course I don't actually know what the purpose of it is or if I'd find it useful. 
 
-**Current Status: Broken**
+**Current Status: Possibly Broken** (finished initial edits, haven't atually run it yet)
 
 ### Requirements (Windows):
 

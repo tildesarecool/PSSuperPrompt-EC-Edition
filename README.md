@@ -7,13 +7,15 @@ Basic description
 
 Bearing in mind of course I don't actually know what the purpose of it is or if I'd find it useful. 
 
-**Current Status: Possibly Broken** (finished initial edits, haven't atually run it yet)
+**Current Status: Successfully running** (macro to reset to original prompt doens't work though)
+
+Even more status update: I broke down the code into functions so it's more managable. And adjusted boolean tests to make more sense and try and adjust based on what is or is not available. Some things I had to speculate on but are probably "close enough". It technically runs with the same functionality as the original (the prompt reset alias isn't working, though). **The Install instructions below are not accurate. Have write something better up tomorrow or the near future.**
 
 ### Requirements (Windows):
 
 - **PS v7.x** for Windows 10/11
 
-- *Local admin/root access to system* in order to fully customize prompt (and run programs with local admin)
+- *Local admin/root access to system* in order to fully customize prompt (and run programs with local admin) - Note: not fully tested/confirmed as requirement
 
 ### Optional but good to have:
 * **Git for Windows** (available via package manager like chocolatey or [the git website](https://gitforwindows.org/)
@@ -33,7 +35,7 @@ Bearing in mind of course I don't actually know what the purpose of it is or if 
   - Install instructions with a copy/paste installer script can be [found on the chocolatey install guide page](https://chocolatey.org/install).
 
 
-### Installation
+### Installation [work in progress]
 
 Scientists are still working on deciphering the meaning of this non-sensical technobabble. That's what I'm going with.
 

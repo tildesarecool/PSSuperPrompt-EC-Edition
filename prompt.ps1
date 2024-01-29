@@ -82,9 +82,9 @@ function Test-Administrator {
          $principal = New-Object System.Security.Principal.WindowsPrincipal($identity)
          
          $adminRole = [System.Security.Principal.WindowsBuiltInRole]::Administrator
-         Write-Host "[System.Security.Principal.WindowsBuiltInRole]::Administrator is " $adminRole
+         #Write-Host "[System.Security.Principal.WindowsBuiltInRole]::Administrator is " $adminRole
          $admin = $principal.IsInRole($adminRole)
-         Write-Host "admin after isinroll is" $admin
+         #Write-Host "admin after isinroll is" $admin
      } else {
          Write-Host "I dunno what OS you have"
          $admin = $false

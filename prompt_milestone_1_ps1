@@ -99,10 +99,10 @@ function Test-Administrator {
  
 function TestForPosh {
     if (get-module -Name posh-gi* -ListAvailable -Verbose:$false) { 
-        #Write-Host "found posh git" 
+        Write-Host "found posh git" 
         return $true
     } else { 
-        #Write-Host "did not find posh git, exiting...." 
+        Write-Host "did not find posh git, exiting...." 
         return $false
         
     }

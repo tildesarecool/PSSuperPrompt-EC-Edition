@@ -121,7 +121,7 @@ So I think this line means...paste the script into that PS1 file? Did I get it r
 cleanup and configurability stuff I mentioned above.
 >   - That said, I know myself too well; please don't hold your breath, as it could happen any time between now and the heat death of the universe, and probably closer to the latter than the former ;)
 
-![](thanos-fine-i'll-do-it-myself-ascii-20percent-with-caption.jpg "This only took me a few minutes. Too long.")
+![](img/thanos-fine-i'll-do-it-myself-ascii-20percent-with-caption.jpg "This only took me a few minutes. Too long.")
 
 Not sure why I made that ascii. Seemed strangely fitting.
 
@@ -137,7 +137,7 @@ I assume this has to do with running multiple multi-minute long tasks from power
 
 You call that fun?
 
-![](ectecctrain-ascii-25percent-with-caption.jpg "Well it was fun to make")
+![](img/ectecctrain-ascii-25percent-with-caption.jpg "Well it was fun to make")
 
 Now *this* is fun...or weird. Definitely one of those two.
 

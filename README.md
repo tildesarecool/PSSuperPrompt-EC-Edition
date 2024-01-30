@@ -5,19 +5,24 @@ This is a fork of [PSSuperPrompt](https://github.com/poshcodebear/PSSuperPrompt)
 Basic description
 >Some cool extra tricks for your PowerShell prompt to display more details and colors
 
-Bearing in mind of course I don't actually know what the purpose of it is or if I'd find it useful. 
+~~Bearing in mind of course I don't actually know what the purpose of it is or if I'd find it useful. ~~
 
-**Current Status: Successfully running** (macro to reset to original prompt doens't work though)
+I think I have some idea now.
 
-Even more status update: I broke down the code into functions so it's more managable. And adjusted boolean tests to make more sense and try and adjust based on what is or is not available. Some things I had to speculate on but are probably "close enough". It technically runs with the same functionality as the original (the prompt reset alias isn't working, though). **The Install instructions below are not accurate. Have write something better up tomorrow or the near future.**
+**Current Status: Successfully running** (alias to reset to original prompt doens't work and further testing needed)
+
+Even more status update: I broke down the code into functions so it's more managable. And adjusted boolean tests to make more sense and try and adjust based on what is or is not available. Some things I had to speculate on but are probably "close enough" (albeit still work in progress). It technically runs with the same functionality as the original (the prompt reset alias isn't working, though).  **The Install instructions below are not accurate. Have write something better up tomorrow or the near future.**
 
 ### Requirements (Windows):
 
 - **PS v7.x** for Windows 10/11
 
-- *Local admin/root access to system* in order to fully customize prompt (and run programs with local admin) - Note: not fully tested/confirmed as requirement
+I've realized over the course of re-writing and testing there aren't any reall requiments besides PS itself.
 
 ### Optional but good to have:
+
+- *Local admin/root access to system* in order to fully customize prompt (and run programs with local admin) - Note: not fully tested/confirmed as requirement
+
 * **Git for Windows** (available via package manager like chocolatey or [the git website](https://gitforwindows.org/)
   - choco command: 
   **choco install git**
@@ -27,7 +32,7 @@ Even more status update: I broke down the code into functions so it's more manag
 
   - Upon searching I found poshgit listed as a package in the chocolatey repo, but I haven't tried it yet. The command as above would be
   **choco install poshgit**
-  - As it turns out there's several ways of installing posh-git that involves a few more steps depending on a number of variables. I'm linking to the instructions on the project's GitHub and leave it at that: 
+  - As it turns out there's several ways of installing posh-git that involves a few more steps depending on a number of variables. I'll linking to the instructions on the project's GitHub and leave it at that: 
   https://github.com/dahlbyk/posh-git
 
 - **Chocolatey package manager** for windows: my own preference for Windows package managers (I imagine __win-get__ will server this purpose too)
@@ -37,29 +42,41 @@ Even more status update: I broke down the code into functions so it's more manag
 
 ### Installation [work in progress]
 
-Scientists are still working on deciphering the meaning of this non-sensical technobabble. That's what I'm going with.
+Original line from author for installation:
 
 > To install it, just paste the entire thing into your `$profile`, or dot source the .ps1 file from your `$profile`. Either will work.
 
-I figured out what this means: but don't install it this way. 
+I figured out what this means: `$profile` is an environemnt varaible pointing to a "special" PS1. Simply open powershell and type in `$profile` to see the path to this PS1 script. Mine for instance is 
+`C:\Users\tildes\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`
 
-Install steps:
-- clone repository
-- switch to repo folder and admin PS commandline
-- run prompt.ps1
+This where my installation steps might differ slightly from yours: I utilized some *symbolic links* to make things easier on myself. I'll provide multiple options for the average non-forking user:
 
-One of the ways I recommend this way way because the code that is supposed to revert back to the original prompt doesn't seem to work, at least no for me. And I think a way of resetting back to the default prompt is worthwhile in case it doesn't actually work for you.
+Method 1:
+- Go to the equivalent path in your profile: 
+`C:\Users\tildes\Documents\PowerShell\`
+- copy the prompt.ps1 script from this repo to that folder location
+- Rename the script to `Microsoft.PowerShell_profile.ps1` 
+- Open PowerShell and issue the command:`. $profile` 
 
-That code being this bit. If you know PS well enough this works for you or you already know how to fall back to default that install to `$profile` all you like.
+Method 2, from PowerShell prompt: (optional, more steps and uncessarily complicated)
+-  Assuming the above mentioned `$profile` folder does not have any files, create a symblic link for the repository file `PS profile default script.ps1` in that `$profile` folder. 
+The command I used was:
+```Powershell
+ cmd /c mklink C:\Users\tildes\Documents\PowerShell\Microsoft.PowerShell_profile.ps1  "C:\Users\tildes\Documents\repos\PSSuperPrompt-EC-Edition\prompt.ps1"
+ ``` 
+    
+(Ya, I know I'm using the old symbolic link command, don't judge me)
+ 
+- This creates a symbolic link of the `prompt.ps1` script to the script named in your `$profile` command. And you can safely remove said symbolic link any time you want.
 
-```PowerShell
-Invoke-Expression "function Reset-Prompt { . '$($MyInvocation.MyCommand.Path)' }"
-New-Alias -Name 'rsp' -Value 'Reset-Prompt' -Force
-```
+- As above, the final step is to issue `. $profile`
+
+
+One of the reasons I recommend the second way is because because the code that is supposed to revert back to the original prompt doesn't seem to work, at least not for me. And I think a way of resetting back to the default prompt is worthwhile in case This customization isn't what you want.
 
 ## Latest Updates will be at the bottom
 
-I've already worked on it a little bit before the forking. Although re-reading these notes after forking I realize I didn't follow the instructions in my testing and attempted use. *I may just apply to be a software tester.*
+Re-reading these notes after forking I realized I didn't follow the instructions in my testing of the original version and attempted use. *I may just apply to be a software tester.*
 
 I'll go through the notes here and make some *useful* comments of my own.
 
@@ -143,8 +160,20 @@ I was having trouble with detecting the posh-git module so I did a little experi
 
 ```Powershell
 if (get-module -Name posh* -ListAvailable -Verbose:$false) { Write-Host "found" } else { Write-Host "not found" }
-
 ```
 As I'm still troubleshooting without posh-git, this returns *not found* for me. But I could also set a variable to either True or False depending instead. I mean it's a few lines longer to create a function to do this but I know it works.
 
 
+---
+
+### Announcing Release Candidate 1 (RC1)
+
+As of January 28th 2024 I had successfully gone through and essentially refactored the code: I fixed one or two logic errors, removed or simplified some code and shifted the code in separate functions instead of the one big one (and extra).
+
+Upon running the script for comparison, the custom prompt of the EC edition with that of the original @poshcodebear version, it's maybe 95% there appearance-wise. I still need to test the further functionality of the rest of it. Which I think is just that "jobs" related function. 
+
+The original tested to see if posh-git was installed but didn't do anything further related to git. I think posh-git was supposed to take care of any git-related tasks. Which means EC edition tests to see if `git` runs or not, displays [GIT] and nothing further.
+
+The rest of functionality is testing for things like local admin privileges (to constumize the prompt accordinging), counting commands in command history, and one or two other things that are more for helpful information.
+
+Once it appears I've gone as far as I can with re-creating the original in refactored form, I'll start adding features.

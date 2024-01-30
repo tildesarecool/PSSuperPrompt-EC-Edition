@@ -1,0 +1,46 @@
+23:53 1/28/2024
+
+I'm using prompt.ps1 to customize my PS prompt via the 
+Microsoft.PowerShell_profile.ps1
+in the parent powershell folder
+
+I wanted to use a separate file with the script instead of pasting it into the Microsoft.PowerShell_profile.ps1 file directly
+i asked GPT about it and she said to put it in a subfolder so that's what i did
+
+
+--------------
+The Microsoft.PowerShell_profile.ps1 file is typically used as the profile script for the PowerShell console and ISE. It loads automatically when you start a new PowerShell session.
+
+If you want to organize your custom scripts, including your prompt.ps1, you can follow these steps:
+
+Profile Script Location:
+
+Find the location of your profile script using $profile. Common locations are:
+Current user, current host: $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+All users, current host: $HOME\Documents\PowerShell\profile.ps1
+Create a Custom Folder:
+
+Create a folder (e.g., "Scripts") in the same directory as your profile script.
+Move or Copy Your Scripts:
+
+Move or copy your custom scripts, including prompt.ps1, into the "Scripts" folder.
+Update Profile Script:
+
+Open your profile script (Microsoft.PowerShell_profile.ps1) in a text editor.
+
+Add the following lines to import your custom scripts:
+
+powershell
+Copy code
+# Import custom scripts
+$customScriptsFolder = Join-Path (Split-Path $profile) "Scripts"
+Get-ChildItem -Path $customScriptsFolder -Filter "*.ps1" | ForEach-Object { . $_.FullName }
+Save the changes.
+
+Reload Profile:
+
+Close and reopen your PowerShell session, or manually reload the profile using:
+powershell
+Copy code
+. $profile
+Now, your custom scripts, including prompt.ps1, will be imported and available in your PowerShell session. This way, you can organize your scripts in a separate folder for better management.

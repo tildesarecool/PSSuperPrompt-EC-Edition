@@ -5,7 +5,6 @@ This is a fork of [PSSuperPrompt](https://github.com/poshcodebear/PSSuperPrompt)
 Basic description
 >Some cool extra tricks for your PowerShell prompt to display more details and colors
 
-~~Bearing in mind of course I don't actually know what the purpose of it is or if I'd find it useful. ~~
 
 I think I have some idea now.
 

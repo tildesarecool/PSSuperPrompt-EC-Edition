@@ -24,8 +24,10 @@ For me for instance I would switch my repo directory and run the script:
 
 ```PowerShell
 cd C:\Users\tildes\Documents\repos\PSSuperPrompt-EC-Edition\scripts
-*. .\prompt.ps1*
 ```
+**. .\prompt.ps1**
+
+
 
 ### Requirements (Windows):
 

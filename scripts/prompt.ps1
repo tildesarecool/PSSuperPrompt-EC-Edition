@@ -214,7 +214,7 @@ $Global:gitStatus = DetermineGitInstalled
 $Global:admin = Test-Administrator
 $Global:wd = setWorkDir
 #$Global:user = $env:USERNAME
-# Ternaries are "tight"
+# Ternaries are "tight"...apparently PS 5 doesn't support ternaries. So I'll add an if/else version check later. Or just make the minimum version of PS 7.x.
 $Global:user = $IsWindows ? $env:USERNAME : ($IsLinux ? $env:USER : ($IsMacOS ? $env:USER : $null))
 $Global:hostname = $IsWindows ? $env:COMPUTERNAME : ($IsLinux ? $env:HOSTNAME : ($IsMacOS ? $env:HOSTNAME : $null))
 $Global:gethistcount = DeterHistCount

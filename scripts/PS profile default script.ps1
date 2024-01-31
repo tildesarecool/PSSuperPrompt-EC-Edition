@@ -8,5 +8,5 @@
 # Import custom scripts
 $customScriptsFolder = Join-Path (Split-Path $profile) "Scripts"
 #######Get-ChildItem -Path $customScriptsFolder -Filter "*.ps1" | ForEach-Object { . $_.FullName }
-#Get-ChildItem -Path $customScriptsFolder -Filter "*-ec.ps1" | ForEach-Object { . $_.FullName }
-Get-ChildItem -Path $customScriptsFolder -Filter "*-orginal.ps1" | ForEach-Object { . $_.FullName }
+Get-ChildItem -Path $customScriptsFolder -Filter "*-ec.ps1" | ForEach-Object { . $_.FullName }
+#Get-ChildItem -Path $customScriptsFolder -Filter "*-orginal.ps1" | ForEach-Object { . $_.FullName }

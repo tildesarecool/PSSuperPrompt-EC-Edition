@@ -2,21 +2,36 @@
 
 This is a fork of [PSSuperPrompt](https://github.com/poshcodebear/PSSuperPrompt).
 
-Basic description
+Basic description from @poshcodebear
 >Some cool extra tricks for your PowerShell prompt to display more details and colors
 
+My updated idea on what this EC Edition will be: a display immediately above the CLI with various pieces of information. As much of this as possible will be customizable in with what is display in what colors. The prompt itself will also be customizable for displayed info and colors.
 
-I think I have some idea now.
+Also a "make my PS prompt normal again". 
 
-**Current Status: Successfully running** (alias to reset to original prompt doens't work and further testing needed)
+**Current Status: Successfully running** (Not really functional, just technically runs)
 
-Even more status update: I broke down the code into functions so it's more managable. And adjusted boolean tests to make more sense and try and adjust based on what is or is not available. Some things I had to speculate on but are probably "close enough" (albeit still work in progress). It technically runs with the same functionality as the original (the prompt reset alias isn't working, though).  **The Install instructions below are not accurate. Have write something better up tomorrow or the near future.**
+Even more status update: I broke down the code into functions so it's more managable. I've moved the function declaraions to separate PS1 file and called it from `prompt.ps1`. This merely necessitates creating a new symlink (or copying the file itself) to that `$profile` directory mentioned below.    **The Install instructions below are only semi-accurate. Have write something better up tomorrow or the near future.**
+
+### Running the script
+Perhaps because of a gap in my PS shell knowledge, I didn't realize I could run `prompt.ps1` directly from the repo directory with
+
+```PowerShell
+. .\prompt.ps1
+```
+
+For me for instance I would switch my repo directory and run the script:
+
+```PowerShell
+cd C:\Users\tildes\Documents\repos\PSSuperPrompt-EC-Edition\scripts
+**. .\prompt.ps1**
+```
 
 ### Requirements (Windows):
 
 - **PS v7.x** for Windows 10/11
 
-I've realized over the course of re-writing and testing there aren't any reall requiments besides PS itself.
+I've realized over the course of re-writing and testing there aren't any reall requiments besides PS itself. There is one thing that doesn't work in PS5 which I will probably fix later (ternary variable declaration)
 
 ### Optional but good to have:
 
@@ -45,7 +60,7 @@ Original line from author for installation:
 
 > To install it, just paste the entire thing into your `$profile`, or dot source the .ps1 file from your `$profile`. Either will work.
 
-I figured out what this means: `$profile` is an environemnt varaible pointing to a "special" PS1. Simply open powershell and type in `$profile` to see the path to this PS1 script. Mine for instance is 
+I figured out what this means: `$profile` is an environemnt variable pointing to a "special" PS1. Simply open powershell and type in `$profile` to see the path to this PS1 script. Mine for instance is 
 `C:\Users\tildes\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`
 
 This where my installation steps might differ slightly from yours: I utilized some *symbolic links* to make things easier on myself. I'll provide multiple options for the average non-forking user:
@@ -54,7 +69,7 @@ Method 1:
 - Go to the equivalent path in your profile: 
 `C:\Users\tildes\Documents\PowerShell\`
 - copy the prompt.ps1 script from this repo to that folder location
-- Rename the script to `Microsoft.PowerShell_profile.ps1` 
+- Rename the script to `Microsoft.PowerShell_profile.ps1` (the file name from your `.$profile` command)
 - Open PowerShell and issue the command:`. $profile` 
 
 Method 2, from PowerShell prompt: (optional, more steps and uncessarily complicated)
@@ -67,11 +82,17 @@ The command I used was:
 (Ya, I know I'm using the old symbolic link command, don't judge me)
  
 - This creates a symbolic link of the `prompt.ps1` script to the script named in your `$profile` command. And you can safely remove said symbolic link any time you want.
+- For new version: use same method to create symbolic link to the functions script. something like:
+
+```PowerShell
+cmd /c mklink C:\Users\tildes\Documents\PowerShell\superprompt_functions.ps1 C:\Users\tildes\Documents\repos\PSSuperPrompt-EC-Edition\scripts\superprompt_functions.ps1
+```
 
 - As above, the final step is to issue `. $profile`
 
+### Uninstall [work in progress]
 
-One of the reasons I recommend the second way is because because the code that is supposed to revert back to the original prompt doesn't seem to work, at least not for me. And I think a way of resetting back to the default prompt is worthwhile in case This customization isn't what you want.
+Since I havne't added a way to drop back to the default PS Prompt yet, merely delete the symbolic links created above and issue `. $profile`.
 
 ## Latest Updates will be at the bottom
 
@@ -107,15 +128,12 @@ not getting the added delay every time.
 prompt easier so I don't have to reload every time I try something, or if I set up another prompt
 it lets me switch back to this one with four keystrokes.
 
-Actually I stared at these lines while working on this is it didn't register what these were for. I was about to suggest "a way to reset back to default". Then...well never mind then. Update: I couldn't get the alias to work so I don't know how to revert back to the old prompt.
+As it turns out this reset-prompt functionality was intended for something else entirely, not resetting the PS prompt to the "vanilla" PS prompt.
 
 >- To install it, just paste the entire thing into your `$profile`, or dot source the .ps1 file
 from your `$profile`. Either will work.
 
-I think I'll move this minor detail to the top of the description and provide more details on what that means and how to do it. As soon as I fugre that out...I'm kidding I'm kidding. I probably know what that means.
-Update: as it turns out, typing `$profile` into powershell simply provides the output of a path to the file
-**Microsoft.PowerShell_profile.ps1**
-So I think this line means...paste the script into that PS1 file? Did I get it right? Or put prompt.ps1 into the same path as Microsoft.PowerShell_profile.ps1? Probably one of those two things.
+See above for my "installation" guide. And if you're brave see [@poshcodebear's dev branch for a new install script he's created](https://github.com/poshcodebear/PSSuperPrompt/tree/dev) (I haven't tested with EC edition yet).
 
 >- If I wind up taking the time, at some point I plan to add a better description and do a lot of the
 cleanup and configurability stuff I mentioned above.
@@ -131,7 +149,7 @@ making better use of jobs, and one of the problems with jobs is how invisible th
 remember they're there, and they never let you know when they're done), so the jobs piece is meant to
 make them more visible.
 
-I assume this has to do with running multiple multi-minute long tasks from powershell at the same time. I've never had a real need for such functionality (assuming I'm right about that). I'd sooner open a new tab in Windows Terminal. I don't do lots of compiling or anything either though. I'll leave it in.
+I understand the intent behind this functionality to some degree now. It's kind of an optional feature.
 
 > - Fun fact: the original inspiration for this prompt is the Gentoo default prompts (both for root and for regular users). It still somewhat resembles that prompt, though obviously heavily modified at this point
 

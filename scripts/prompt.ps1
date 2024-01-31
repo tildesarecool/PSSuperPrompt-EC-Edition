@@ -5,11 +5,9 @@
 # and the second test combines with "Get-GitStatus" for this $gitstatus variable
 #$gitStatus = $Global:__poshGitInstalled -and (Get-GitStatus)
 # later in the script, it tests against $gitStatus to perform further tests
-# But since I don't have sample output of what Get-GitStatus returns I'm kind of guessing
-# so it could be it's saying "make sure the posh-git module is installed then also get result of a Get-GitStatus command"
-# assuming that Get-GitStatus would return false or non-true if it failed. which seems unnecessary
-# so I'm taking over the gitstatus variable to simply check if git-for-windows is installed or not instead
-# a function posh-git already wrote out so I'm going to "borrow" it
+#update: I found the intent behind $gitStatus and it was for something else entirely
+# than the name would imply (to me)
+# I'll update the readme eventually. Probably.
 
 # intended to "backup" prompt as it currently is
 # this doesn't work so i'm taking it out
@@ -17,16 +15,16 @@
 
     # works as well. the hostname variable seems redundant
 
-    $functionscriptpath = ".\superprompt_functions.ps1"
+    $functionscriptpath = "$PSScriptRoot\superprompt_functions.ps1"
 
 if ( test-path  $functionscriptpath -pathtype Leaf ) {
         
     Write-Host "script found"
-    Write-Host "value of functionscriptpath is " $functionscriptpath
+    Write-Host "value of psscriptroot is " $PSScriptRoot
     . $functionscriptpath
 
     } else {
-        
+        Write-Host "value of psscriptroot is " $PSScriptRoot
         Write-Host "not found - value of functionscriptpath is " $functionscriptpath
     Write-Host "script not found"
         break

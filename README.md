@@ -24,7 +24,7 @@ For me for instance I would switch my repo directory and run the script:
 
 ```PowerShell
 cd C:\Users\tildes\Documents\repos\PSSuperPrompt-EC-Edition\scripts
-**. .\prompt.ps1**
+*. .\prompt.ps1*
 ```
 
 ### Requirements (Windows):
@@ -149,7 +149,7 @@ making better use of jobs, and one of the problems with jobs is how invisible th
 remember they're there, and they never let you know when they're done), so the jobs piece is meant to
 make them more visible.
 
-I understand the intent behind this functionality to some degree now. It's kind of an optional feature.
+I understand the intent behind this functionality to some degree now. It's kind of an optional feature. I'll leave it in though.
 
 > - Fun fact: the original inspiration for this prompt is the Gentoo default prompts (both for root and for regular users). It still somewhat resembles that prompt, though obviously heavily modified at this point
 
@@ -163,11 +163,17 @@ Also, Gentoo? You just use that so you can take a break while you compile your k
 
 I use Arch btw.
 
+
+---
+
+My interpretation of what this script is apparently doing. Or what this fork _will_ do ultimately. 
+
+
 ---
 
 ### Starting Work
 
-This scripts starts with some extended tests to see if the OS is windows or Linux for purpose of determining if it's being run under an Admin/root level shell. 
+This script starts with some extended tests to see if the OS is windows or Linux for purpose of determining if it's being run under an Admin/root level shell. 
 
 After very little work it seems likely some how this OS answer will have to branch out for the two possibilities from the start. In other words ask the OS question and pass that in the main function then take appropriate actions depending on the OS.
 
@@ -191,6 +197,6 @@ Upon running the script for comparison, the custom prompt of the EC edition with
 
 The original tested to see if posh-git was installed but didn't do anything further related to git. I think posh-git was supposed to take care of any git-related tasks. Which means EC edition tests to see if `git` runs or not, displays [GIT] and nothing further.
 
-The rest of functionality is testing for things like local admin privileges (to constumize the prompt accordinging), counting commands in command history, and one or two other things that are more for helpful information.
+As it turns out the admin privelege test is there for customization of the prompt character (# or $ depending).
 
 Once it appears I've gone as far as I can with re-creating the original in refactored form, I'll start adding features.

@@ -179,4 +179,21 @@ function DetermineGitInstalled {
         Write-Host ''
         Write-Host "$($sym)" -ForegroundColor Cyan -NoNewLine
     }
+
+<#
+    this is a rought outline of a "reset to vanilla PS shell prompt" function
+
+    Before anything else some how save what the current prompt looks like...
+    if there's no Microsoft.PowerShell_profile.ps1 to be found any where than this
+    will likely be 
+    PS + current directory + >  
+    with default white text/black background (or blue, whatever)
+   
+upon exiting the script i'd likely delete all declared variables then reset the
+prompt back to how it started. 
+
+I could have a separate function for resetting all those global variables and 
+just call it for the     
+    
+    #>
     

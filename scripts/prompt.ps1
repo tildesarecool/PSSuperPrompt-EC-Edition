@@ -20,11 +20,11 @@
 if ( test-path  $functionscriptpath -pathtype Leaf ) {
         
     Write-Host "script found"
-    Write-Host "value of psscriptroot is " $PSScriptRoot
+    Write-Host "value of functionscriptpath is " $functionscriptpath
     . $functionscriptpath
 
     } else {
-        Write-Host "value of psscriptroot is " $PSScriptRoot
+        Write-Host "value of PSCommandPath is " $PSCommandPath
         Write-Host "not found - value of functionscriptpath is " $functionscriptpath
     Write-Host "script not found"
         break

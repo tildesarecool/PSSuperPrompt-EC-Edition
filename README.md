@@ -225,7 +225,7 @@ Since the fork has already strayed away from the original purpose, I'm going to 
   - This would include both what to display in the information section of the prompt as well as the prompt itself.
   - Also establish a list of colors
 - Then I would like to add some sort of dead-simple customization options for colors what information will be displayed
-  - For instance (since my displaying [git] doesn't currently serve any purpose) I could make this say [git command read: yes/no] just to establish it's there
-  - For me in particular I would like to how many if any applications installed via chocolatey need to be updated. Something like [chocolately updates: 3] and if there no pending updates don't display anything
+  - For instance (since my displaying [git] doesn't currently serve any purpose) I could make this say [git command ready: yes/no] just to establish it's there
+  - For me in particular I would like to know how many if any applications installed via chocolatey need to be updated. Something like [chocolately updates: 3] and if there no pending updates don't display anything
 - I will probably make an install script as well, though mine may end up not looking anything like @poshcodebear's version.
 

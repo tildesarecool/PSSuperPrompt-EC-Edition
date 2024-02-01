@@ -33,7 +33,7 @@ cd C:\Users\tildes\Documents\repos\PSSuperPrompt-EC-Edition\scripts
 
 - **PS v7.x** for Windows 10/11
 
-I've realized over the course of re-writing and testing there aren't any reall requiments besides PS itself. There is one thing that doesn't work in PS5 which I will probably fix later (ternary variable declaration)
+I've realized over the course of re-writing and testing there aren't any reall requiments besides PS itself. There is one thing that doesn't work in PS5 which I will probably fix later (ternary variable declaration) ~~This was mistaken text~~
 
 ### Optional but good to have:
 

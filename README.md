@@ -33,7 +33,7 @@ cd C:\Users\tildes\Documents\repos\PSSuperPrompt-EC-Edition\scripts
 
 - **PS v7.x** for Windows 10/11
 
-I've realized over the course of re-writing and testing there aren't any reall requiments besides PS itself. There is one thing that doesn't work in PS5 which I will probably fix later (ternary variable declaration) ~~This was mistaken text~~
+I've realized over the course of re-writing and testing there aren't any reall requiments besides PS itself. There is one thing that doesn't work in PS5 which I will probably fix later (ternary variable declaration) 
 
 ### Optional but good to have:
 
@@ -166,9 +166,6 @@ Also, Gentoo? You just use that so you can take a break while you compile your k
 I use Arch btw.
 
 
----
-
-My interpretation of what this script is apparently doing. Or what this fork _will_ do ultimately. 
 
 
 ---
@@ -202,3 +199,33 @@ The original tested to see if posh-git was installed but didn't do anything furt
 As it turns out the admin privelege test is there for customization of the prompt character (# or $ depending).
 
 Once it appears I've gone as far as I can with re-creating the original in refactored form, I'll start adding features.
+<!--
+~~This was mistaken text~~
+-->
+
+---
+
+### Brainstorming on re-writes and features
+
+My interpretation of what this script is apparently doing. Or what this fork _will_ do ultimately. 
+
+Basically the main "chunk" of the script is to collect information about the environment and save information into appropriate variable. 
+
+This is an indirect way of saying "asking questions" that the script can answer. Questions like "is git installed?" and "what version of powershell am I?".
+
+With the information collected it then pieces together the information utilizing this data for display both above the actually command line and as part of the prompt.
+
+Some of the data - like the number of items in the command history - is collected each time a command is run via this script while other information - like the PS version currently running - is just collected the one time. Based on this data custom colors are also assigned.
+
+@poshcodebear the PS job function I view as something of a bonus feature as doesn't fit either of the "get information" or "set data based on information" categories.
+
+Since the fork has already strayed away from the original purpose, I'm going to keep going in that direction:
+
+- First I would like to establish a config file for both established information about the environment as well as user preferences.
+  - This would include both what to display in the information section of the prompt as well as the prompt itself.
+  - Also establish a list of colors
+- Then I would like to add some sort of dead-simple customization options for colors what information will be displayed
+  - For instance (since my displaying [git] doesn't currently serve any purpose) I could make this say [git command read: yes/no] just to establish it's there
+  - For me in particular I would like to how many if any applications installed via chocolatey need to be updated. Something like [chocolately updates: 3] and if there no pending updates don't display anything
+- I will probably make an install script as well, though mine may end up not looking anything like @poshcodebear's version.
+

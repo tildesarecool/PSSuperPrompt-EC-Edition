@@ -15,6 +15,47 @@
 
     # works as well. the hostname variable seems redundant
 
+
+<#
+I decided to move the variable declarations to a text file
+and use get-content to bring them in
+#>
+$declareVars = "$PSScriptRoot\variables.txt"
+if ( test-path  $declareVars -pathtype Leaf ) {
+    $importVariables = Get-Content -Path $declareVars
+
+    foreach ($varDec in $importVariables) {
+        Remove-Variable -Name $varDec
+
+
+    }    
+
+<#
+    for ($i = 0; $i -le $importvariables.length; $i++) {
+         Remove-Variable -Name varDec
+         Write-Host  $varDec
+
+#>
+
+    # Remove all existing variables
+#Get-Variable -Scope Global | Where-Object { $_.Visibility -eq 'Public' -and $_.Name -ne 'null' } | Remove-Variable
+    # Execute variable declarations
+#    Invoke-Expression -Command $importVariables
+<#
+
+$importVariables is an array of strings, and Invoke-Expression expects a single string as its argument. 
+To resolve this, you can join the array elements into a single string before passing it to Invoke-Expression using
+"`n"
+
+#>
+    Invoke-Expression -Command ($importVariables -join "`n")
+
+    Write-Host "variables imported successfully"
+} else {
+    Write-Host "Could not find variables.txt. Please add this file (latest available from GitHub repo)"
+}
+
+
     $functionscriptpath = "$PSScriptRoot\superprompt_functions.ps1"
 
 if ( test-path  $functionscriptpath -pathtype Leaf ) {
@@ -30,24 +71,10 @@ if ( test-path  $functionscriptpath -pathtype Leaf ) {
         break
 }
 
-#$Global:PSFullVer = DeterminePSVersion
-# rather than testing aginst running Get-GitStatus I just test against whether or not the git command runs or not
-$Global:__poshGitInstalled = TestForPosh -and $gitStatus
-$Global:jobs = Get-Job
-$Global:gitStatus = DetermineGitInstalled
-$Global:admin = Test-Administrator
-$Global:wd = setWorkDir
-#$Global:user = $env:USERNAME
-# Ternaries are "tight"...apparently PS 5 doesn't support ternaries. So I'll add an if/else version check later. Or just make the minimum version of PS 7.x.
-$Global:user = $IsWindows ? $env:USERNAME : ($IsLinux ? $env:USER : ($IsMacOS ? $env:USER : $null))
-$Global:hostname = $IsWindows ? $env:COMPUTERNAME : ($IsLinux ? $env:HOSTNAME : ($IsMacOS ? $env:HOSTNAME : $null))
-$Global:gethistcount = DeterHistCount
-$Global:PSFullVer = DeterminePSVersion
-$Global:lastTime = ReturnLastTime
-$Global:GetTimeStamp = "[$(([string](Get-Date)).Split()[1])] "
-$Global:SetPSverPRLabel = GetPSverPRLabel
 
-#$Global:lastTime = ReturnLastTime
+
+
+
 function Global:prompt {
 
     # Job control: I don't think it matters where in this function I  call this job control so I'm putting it first

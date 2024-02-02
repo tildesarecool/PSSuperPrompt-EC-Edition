@@ -9,7 +9,7 @@ My updated idea on what this EC Edition will be: a display immediately above the
 
 Also a "make my PS prompt normal again". 
 
-**Current Status: Successfully running** (Not really functional, just technically runs)
+**Current Status: Successfully running-broken** (Will probably run once variables file copied)
 
 Even more status update: I broke down the code into functions so it's more managable. I've moved the function declaraions to separate PS1 file and called it from `prompt.ps1`. This merely necessitates creating a new symlink (or copying the file itself) to that `$profile` directory mentioned below.    **The Install instructions below are only semi-accurate. Have write something better up tomorrow or the near future.**
 
@@ -66,6 +66,8 @@ I figured out what this means: `$profile` is an environemnt variable pointing to
 `C:\Users\tildes\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`
 
 This where my installation steps might differ slightly from yours: I utilized some *symbolic links* to make things easier on myself. I'll provide multiple options for the average non-forking user:
+
+Note: latest version I split the variable declarations into a separate file so this must be symbolically linked or copied to the same directory as propmt.ps1. I'm not sure yet if I'll keep this approach.
 
 Method 1:
 - Go to the equivalent path in your profile: 
@@ -206,6 +208,9 @@ Once it appears I've gone as far as I can with re-creating the original in refac
 ---
 
 ### Brainstorming on re-writes and features
+
+#### Actual trascript of converation with @poshcodebear when he first saw the fork
+![](img/moe-meme-fork-captions-buzzding-v3.jpg "Well it was fun to make")
 
 My interpretation of what this script is apparently doing. Or what this fork _will_ do ultimately. 
 

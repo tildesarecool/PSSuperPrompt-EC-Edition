@@ -1,0 +1,12 @@
+$Global:__poshGitInstalled = TestForPosh -and $gitStatus
+$Global:jobs = Get-Job
+$Global:gitStatus = DetermineGitInstalled
+$Global:admin = Test-Administrator
+$Global:wd = setWorkDir
+$Global:user = $IsWindows ? $env:USERNAME : ($IsLinux ? $env:USER : ($IsMacOS ? $env:USER : $null))
+$Global:hostname = $IsWindows ? $env:COMPUTERNAME : ($IsLinux ? $env:HOSTNAME : ($IsMacOS ? $env:HOSTNAME : $null))
+$Global:gethistcount = DeterHistCount
+$Global:PSFullVer = DeterminePSVersion
+$Global:lastTime = ReturnLastTime
+$Global:GetTimeStamp = "[$(([string](Get-Date)).Split()[1])] "
+$Global:SetPSverPRLabel = GetPSverPRLabel

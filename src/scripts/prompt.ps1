@@ -20,15 +20,21 @@
 I decided to move the variable declarations to a text file
 and use get-content to bring them in
 #>
-$declareVars = "$PSScriptRoot\variables.txt"
+#if ($declareVars = "$PSScriptRoot\variables.txt") {
+#    Write-Host "found variables - "  $declareVars
+#}
 if ( test-path  $declareVars -pathtype Leaf ) {
     $importVariables = Get-Content -Path $declareVars
+    Invoke-Expression -Command ($importVariables -join "`n")
 
-    foreach ($varDec in $importVariables) {
-        Remove-Variable -Name $varDec
+    Write-Host "variables imported successfully"
 
-
-    }    
+#    foreach ($varDec in $importVariables) {
+#        Remove-Variable -Name $varDec
+    }     else {
+        Write-Host "Could not find variables.txt. Please add this file (latest available from GitHub repo)"
+    }
+    
 
 <#
     for ($i = 0; $i -le $importvariables.length; $i++) {
@@ -48,17 +54,14 @@ To resolve this, you can join the array elements into a single string before pas
 "`n"
 
 #>
-    Invoke-Expression -Command ($importVariables -join "`n")
 
-    Write-Host "variables imported successfully"
-} else {
-    Write-Host "Could not find variables.txt. Please add this file (latest available from GitHub repo)"
-}
+#}
 
 
     $functionscriptpath = "$PSScriptRoot\superprompt_functions.ps1"
 
-if ( test-path  $functionscriptpath -pathtype Leaf ) {
+#if ( test-path  $functionscriptpath -pathtype Leaf ) {
+if ( $functionscriptpath ) {
         
     Write-Host "script found"
     Write-Host "value of functionscriptpath is " $functionscriptpath
